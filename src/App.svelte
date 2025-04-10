@@ -6,6 +6,7 @@
   import { theme } from "./lib/theme";
   import { scrolled } from "./lib/stores";
   import AwesomeRepos from "./components/AwesomeRepos.svelte";
+  import UserTest from "./components/UserTest.svelte";
 
   onMount(() => {
     const mainElement = document.querySelector("main");
@@ -35,4 +36,5 @@
   <Hero />
   <Features />
   <AwesomeRepos />
+  <UserTest />
 </main>
