@@ -21,7 +21,7 @@
 
 <style>
   .wrapper {
-    width: 23rem;
+    width: 25rem;
     display: flex;
     flex-direction: column;
     height: 100%;

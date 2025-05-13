@@ -4,12 +4,7 @@ import { literal, union, z } from "zod";
 const themeSchema = union([literal("dark"), literal("light")]);
 type Theme = z.infer<typeof themeSchema>;
 
-export const theme = storedWritable<Theme>(
-  "theme",
-  themeSchema,
-  loadTheme(),
-  !window.localStorage,
-);
+export const theme = storedWritable<Theme>("theme", themeSchema, loadTheme());
 
 export function loadTheme(): Theme {
   const { matches } = window.matchMedia("(prefers-color-scheme: dark)");

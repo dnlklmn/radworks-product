@@ -37,7 +37,6 @@
   .container {
     width: 100%;
     display: flex;
-    background: var(--color-background-float);
     color: var(--color-foreground-contrast);
     flex-direction: column;
     align-items: center;
