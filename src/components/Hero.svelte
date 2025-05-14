@@ -3,7 +3,7 @@
   import { fade } from "svelte/transition";
   import videoSrc from "../assets/desktop-review.mp4"; // Import the video source
   import Download from "./Download.svelte";
-  
+
   let { qrcodeVisible = $bindable() }: { qrcodeVisible: boolean } = $props();
 
   let isPlaying = false;
@@ -12,12 +12,12 @@
 
   function openLightbox() {
     lightboxOpen = true;
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+    document.body.style.overflow = "hidden"; // Prevent scrolling when lightbox is open
   }
 
   function closeLightbox() {
     lightboxOpen = false;
-    document.body.style.overflow = '';
+    document.body.style.overflow = "";
     if (lightboxVideo) {
       lightboxVideo.pause();
     }
@@ -25,7 +25,7 @@
 
   function handleLightboxClick(event) {
     // Check if clicked on the lightbox background (not the video itself)
-    if (event.target.classList.contains('lightbox')) {
+    if (event.target.classList.contains("lightbox")) {
       closeLightbox();
     }
   }
@@ -61,7 +61,7 @@
     playButton.addEventListener("click", () => {
       openLightbox();
     });
-    
+
     // Make video clickable to open lightbox
     video.addEventListener("click", () => {
       if (!isPlaying) {
@@ -86,13 +86,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6rem;
+    gap: 4rem;
   }
 
   @media (min-width: 1024px) {
     .container {
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       padding: 2rem;
@@ -100,7 +100,6 @@
   }
 
   .hero-text {
-    max-width: 40rem;
     padding: 6rem 2rem;
     display: flex;
     flex-direction: column;
@@ -120,21 +119,21 @@
 
   .video-container {
     position: relative;
-    padding: 0 4rem;
+    padding: 0;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 560px;
-    max-width: 100%;
+    width: min(560px, 100%);
   }
 
   @media (min-width: 1024px) {
     .video-container {
       flex: 3;
-      padding: 0 2rem;
+      padding: 0;
+      width: min(750px, 100%);
     }
   }
   .preloader {
@@ -150,11 +149,12 @@
   .video {
     border: 1px solid var(--color-border-hint);
     width: 100%;
-    height: auto;
-    max-height: 400px;
+    height: 100%;
+    aspect-ratio: 16/9;
     display: none;
     border-radius: 8px;
     cursor: pointer;
+    object-fit: cover;
   }
 
   .play-button {
@@ -172,14 +172,16 @@
     color: var(--color-foreground-emphasized);
     font-size: 1.5rem;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
-  
+
   .play-button:hover {
     transform: translate(-50%, -50%) scale(1.1);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   }
-  
+
   .lightbox {
     position: fixed;
     top: 0;
@@ -195,24 +197,26 @@
     box-sizing: border-box;
     backdrop-filter: blur(5px);
   }
-  
+
   .lightbox-content {
     position: relative;
     max-width: 90%;
     max-height: 90%;
   }
-  
+
   .lightbox-video {
-  width: 100%;
-  max-height: 80vh;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-  
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+  }
+
   .close-button {
-    position: absolute;
-    top: -40px;
-    right: -40px;
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
     width: 36px;
     height: 36px;
     background-color: var(--color-foreground-white);
@@ -224,6 +228,9 @@
     font-size: 1.5rem;
     cursor: pointer;
     border: none;
+    line-height: 1;
+    padding-bottom: 2px;
+    z-index: 1001;
   }
 
   @media (min-width: 719.98px) {
@@ -237,11 +244,11 @@
       flex-direction: column;
     }
   }
-  
+
   @media (max-width: 600px) {
     .close-button {
-      top: -50px;
-      right: 0;
+      top: 1rem;
+      right: 1rem;
     }
   }
 </style>
@@ -267,13 +274,26 @@
     </video>
     <div class="play-button">▶</div>
   </div>
-  
+
   {#if lightboxOpen}
     <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <div class="lightbox" on:click={handleLightboxClick} transition:fade={{ duration: 200 }}>
+    <div
+      class="lightbox"
+      on:click={handleLightboxClick}
+      transition:fade={{ duration: 200 }}>
       <div class="lightbox-content">
-        <button class="close-button" on:click={closeLightbox} aria-label="Close video">×</button>
-        <video bind:this={lightboxVideo} id="lightbox-video" class="lightbox-video" controls autoplay>
+        <button
+          class="close-button"
+          on:click={closeLightbox}
+          aria-label="Close video">
+          ×
+        </button>
+        <video
+          bind:this={lightboxVideo}
+          id="lightbox-video"
+          class="lightbox-video"
+          controls
+          autoplay>
           <source src={videoSrc} type="video/mp4" />
           <track kind="captions" />
           Your browser does not support the video tag.

@@ -159,7 +159,7 @@
     <a
       target="_blank"
       href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z4D5UCArafTzTQpDZNQRuqswh3ury">
-      source code
+      source code.
     </a>
   </span>
 </div>

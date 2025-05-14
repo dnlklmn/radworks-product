@@ -75,9 +75,20 @@
       padding: 0 2rem;
     }
   }
+
+  .title-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 4rem;
+  }
 </style>
 
 <div class="container">
+  <div class="title-block">
+    <span class="h2">Features</span>
+  </div>
   <div class="features-grid">
     {#each features as { title, description, icon }}
       <div class="feature-box">
