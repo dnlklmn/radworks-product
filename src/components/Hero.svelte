@@ -86,7 +86,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: 6rem;
   }
 
   @media (min-width: 1024px) {
@@ -111,10 +111,10 @@
 
   @media (min-width: 1024px) {
     .hero-text {
-      flex: 1;
+      flex: 2;
       align-items: flex-start;
       text-align: left;
-      max-width: 50%;
+      max-width: 40%;
     }
   }
 
@@ -133,7 +133,7 @@
 
   @media (min-width: 1024px) {
     .video-container {
-      flex: 1;
+      flex: 3;
       padding: 0 2rem;
     }
   }
