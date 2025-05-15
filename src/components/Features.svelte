@@ -41,9 +41,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 0;
+    padding: 0;
     gap: 4rem;
   }
+
+  @media (min-width: 1024px) {
+    .container {
+      width: 100%;
+      display: flex;
+      color: var(--color-foreground-contrast);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 0;
+      gap: 4rem;
+    }
+  }
+
   .features-grid {
     padding: 0 2rem;
     display: grid;
@@ -81,7 +95,16 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 4rem;
+  }
+
+  @media (min-width: 1024px) {
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 4rem;
+    }
   }
 </style>
 

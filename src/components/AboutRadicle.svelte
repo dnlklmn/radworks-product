@@ -43,10 +43,23 @@
   ] as const;
 
   let selectedFeatureIndex = $state(0);
+  let hasTouchSupport = $state(false);
 
   function selectFeature(index: number) {
     selectedFeatureIndex = index;
   }
+
+  function handleInteraction(index: number, event: Event) {
+    if (hasTouchSupport) {
+      event.preventDefault();
+      selectFeature(index);
+    }
+  }
+
+  // Check for touch support on mount
+  $effect(() => {
+    hasTouchSupport = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+  });
 </script>
 
 <style>
@@ -59,12 +72,19 @@
     justify-content: center;
     padding: 0;
     min-height: 550px;
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .outline-wrapper {
-    width: 66%;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .outline-wrapper {
+      width: 66%;
+    }
   }
 
   :global(.cmd-vertical),
@@ -74,17 +94,17 @@
 
   .float-background {
     background: var(--color-background-float);
-    padding: 2rem;
+    padding: 1rem 2rem 1rem 2rem;
   }
 
   .widget-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     width: 100%;
     max-width: 960px;
-    padding: 0;
+    gap: 4rem;
   }
 
   .title-block {
@@ -92,8 +112,8 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 4rem;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
   }
 
   @media (min-width: 1011px) {
@@ -188,23 +208,14 @@
           <span class="subtitle">Get on the network in 4 easy steps.</span>
         </div>
         <div class="widget-container">
-          <div class="image-container">
-            {#if features[selectedFeatureIndex].svgId === "svg1"}
-              {@html svgOne}
-            {:else if features[selectedFeatureIndex].svgId === "svg2"}
-              {@html svgTwo}
-            {:else if features[selectedFeatureIndex].svgId === "svg3"}
-              {@html svgThree}
-            {:else}
-              {@html svgFour}
-            {/if}
-          </div>
           <div class="blocks-container">
             {#each features as feature, index}
               <div
                 class="feature-box"
                 class:expanded={selectedFeatureIndex === index}
-                on:mouseover={() => selectFeature(index)}>
+                on:mouseover={() => !hasTouchSupport && selectFeature(index)}
+                on:click={e => handleInteraction(index, e)}
+                on:touchstart|preventDefault={() => selectFeature(index)}>
                 <div class="feature-title">{feature.title}</div>
                 {#if selectedFeatureIndex === index}
                   <div class="feature-description">
@@ -224,6 +235,17 @@
                 {/if}
               </div>
             {/each}
+          </div>
+          <div class="image-container">
+            {#if features[selectedFeatureIndex].svgId === "svg1"}
+              {@html svgOne}
+            {:else if features[selectedFeatureIndex].svgId === "svg2"}
+              {@html svgTwo}
+            {:else if features[selectedFeatureIndex].svgId === "svg3"}
+              {@html svgThree}
+            {:else}
+              {@html svgFour}
+            {/if}
           </div>
         </div>
       </div>

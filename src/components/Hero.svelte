@@ -86,7 +86,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
+    gap: 2rem;
   }
 
   @media (min-width: 1024px) {
@@ -96,11 +96,12 @@
       align-items: center;
       flex-wrap: wrap;
       padding: 2rem;
+      gap: 4rem;
     }
   }
 
   .hero-text {
-    padding: 6rem 2rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,6 +111,7 @@
 
   @media (min-width: 1024px) {
     .hero-text {
+      padding: 6rem 2rem;
       flex: 2;
       align-items: flex-start;
       text-align: left;

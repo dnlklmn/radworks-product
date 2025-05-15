@@ -49,6 +49,7 @@
     width: 100%;
     max-width: 600px;
   }
+
   .buttons a {
     text-decoration: none;
   }
