@@ -1,0 +1,138 @@
+import { C as attr_class, E as attr, F as attr_style, G as store_get, I as unsubscribe_stores, B as pop, z as push, J as slot } from "../../chunks/index.js";
+import { g as goto } from "../../chunks/client.js";
+import { p as page } from "../../chunks/stores.js";
+import { I as Icon } from "../../chunks/Icon.js";
+import { w as writable } from "../../chunks/index2.js";
+import { union, literal } from "zod";
+import "clsx";
+function NakedButton($$payload, $$props) {
+  const {
+    children,
+    title,
+    disabled,
+    variant,
+    onclick,
+    stylePadding = "8px 12px",
+    active = false,
+    keyShortcuts
+  } = $$props;
+  const style = `--button-color-1: var(--color-fill-${variant});--button-color-2: var(--color-fill-${variant}-hover);--button-color-3: var(--color-fill-${variant}-shade);--button-color-4: var(--color-fill${variant === "ghost" ? "" : `-${variant}`}-counter)`;
+  $$payload.out += `<divf${attr_class("container svelte-5vehem", void 0, { "disabled": disabled, "active": active })}${attr("title", title)}${attr("aria-keyshortcuts", keyShortcuts)} role="button" tabindex="0"${attr_style(style)}><div class="pixel p1-1 svelte-5vehem"></div> <div class="pixel p1-2 svelte-5vehem"></div> <div class="pixel p1-3 svelte-5vehem"></div> <div class="pixel p1-4 svelte-5vehem"></div> <div class="pixel p1-5 svelte-5vehem"></div> <div class="pixel p2-1 svelte-5vehem"></div> <div class="pixel p2-2 svelte-5vehem"></div> <div class="pixel p2-3 svelte-5vehem"></div> <div class="pixel p2-4 svelte-5vehem"></div> <div class="pixel p2-5 svelte-5vehem"></div> <div class="pixel p3-1 svelte-5vehem"></div> <div class="pixel p3-2 svelte-5vehem"></div> <div class="pixel p3-3 txt-semibold txt-small svelte-5vehem"${attr_style("", { padding: stylePadding })}>`;
+  children($$payload);
+  $$payload.out += `<!----></div> <div class="pixel p3-4 svelte-5vehem"></div> <div class="pixel p3-5 svelte-5vehem"></div> <div class="pixel p4-1 svelte-5vehem"></div> <div class="pixel p4-2 svelte-5vehem"></div> <div class="pixel p4-3 svelte-5vehem"></div> <div class="pixel p4-4 svelte-5vehem"></div> <div class="pixel p4-5 svelte-5vehem"></div> <div class="pixel p5-1 svelte-5vehem"></div> <div class="pixel p5-2 svelte-5vehem"></div> <div class="pixel p5-3 svelte-5vehem"></div> <div class="pixel p5-4 svelte-5vehem"></div> <div class="pixel p5-5 svelte-5vehem"></div></divf>`;
+}
+const themeSchema = union([literal("dark"), literal("light")]);
+function isBrowser() {
+  return typeof window !== "undefined";
+}
+function loadTheme() {
+  if (!isBrowser()) return "light";
+  const stored = localStorage.getItem("theme");
+  if (stored && themeSchema.safeParse(stored).success) {
+    return stored;
+  }
+  const { matches } = window.matchMedia("(prefers-color-scheme: dark)");
+  return matches ? "dark" : "light";
+}
+function createThemeStore() {
+  const { subscribe, set } = writable(loadTheme());
+  return {
+    subscribe,
+    set: (value) => {
+      if (isBrowser()) {
+        localStorage.setItem("theme", value);
+      }
+      set(value);
+    }
+  };
+}
+const theme = createThemeStore();
+const scrolled = writable(false);
+function Header($$payload, $$props) {
+  push();
+  var $$store_subs;
+  let isGuidesPage;
+  function toggleTheme() {
+    theme.set(store_get($$store_subs ??= {}, "$theme", theme) === "dark" ? "light" : "dark");
+  }
+  function navigateTo(path) {
+    goto();
+  }
+  isGuidesPage = store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/guides");
+  $$payload.out += `<div class="header svelte-1pci7qj"${attr_style("", {
+    "box-shadow": `${store_get($$store_subs ??= {}, "$scrolled", scrolled) ? "0 4px 8px 0 rgba(0,0,0,0.075)" : "0 4px 8px 0 rgba(0,0,0,0)"}`
+  })}><span class="title svelte-1pci7qj" style="cursor: pointer">RADWORKS</span> <div class="header-right svelte-1pci7qj">`;
+  NakedButton($$payload, {
+    variant: "ghost",
+    onclick: toggleTheme,
+    children: ($$payload2) => {
+      Icon($$payload2, {
+        name: store_get($$store_subs ??= {}, "$theme", theme) === "dark" ? "moon" : "sun"
+      });
+    }
+  });
+  $$payload.out += `<!----> `;
+  NakedButton($$payload, {
+    onclick: () => window.open("https://radicle.xyz"),
+    variant: "ghost",
+    children: ($$payload2) => {
+      Icon($$payload2, { size: "16", name: "seedling" });
+      $$payload2.out += `<!----> Radicle`;
+    }
+  });
+  $$payload.out += `<!----> `;
+  NakedButton($$payload, {
+    variant: "ghost",
+    onclick: () => window.open("https://bsky.app/profile/radicle.xyz"),
+    children: ($$payload2) => {
+      Icon($$payload2, { size: "16", name: "bluesky" });
+      $$payload2.out += `<!----> Bluesky`;
+    }
+  });
+  $$payload.out += `<!----> `;
+  NakedButton($$payload, {
+    onclick: () => window.open("https://radicle.zulipchat.com/#narrow/channel/369873-support"),
+    variant: "ghost",
+    children: ($$payload2) => {
+      Icon($$payload2, { size: "16", name: "zulip" });
+      $$payload2.out += `<!----> Support`;
+    }
+  });
+  $$payload.out += `<!----> `;
+  NakedButton($$payload, {
+    onclick: () => navigateTo(),
+    variant: "ghost",
+    active: isGuidesPage,
+    children: ($$payload2) => {
+      Icon($$payload2, { size: "16", name: "compass" });
+      $$payload2.out += `<!----> Guides`;
+    }
+  });
+  $$payload.out += `<!----></div></div>`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
+  pop();
+}
+function Footer($$payload) {
+  $$payload.out += `<footer class="svelte-rwqai7"><a href="https://radicle.xyz/guides/user" target="_blank" rel="noopener">Radicle User Guide</a> <span>•</span> <a href="https://radicle.xyz/guides/protocol" target="_blank" rel="noopener">Radicle Protocol Guide</a></footer>`;
+}
+function _layout($$payload, $$props) {
+  push();
+  var $$store_subs;
+  $$payload.out += `<main class="svelte-1u8hf0m">`;
+  Header($$payload);
+  $$payload.out += `<!----> <!---->`;
+  slot($$payload, $$props, "default", {});
+  $$payload.out += `<!----> `;
+  if (!store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/guides")) {
+    $$payload.out += "<!--[-->";
+    Footer($$payload);
+  } else {
+    $$payload.out += "<!--[!-->";
+  }
+  $$payload.out += `<!--]--></main>`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
+  pop();
+}
+export {
+  _layout as default
+};

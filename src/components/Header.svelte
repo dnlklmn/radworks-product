@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import NakedButton from "./NakedButton.svelte";
   import Icon from "./Icon.svelte";
   import { theme } from "../lib/theme";
@@ -7,6 +9,12 @@
   function toggleTheme() {
     theme.set($theme === "dark" ? "light" : "dark");
   }
+
+  function navigateTo(path: string) {
+    goto(path);
+  }
+  
+  $: isGuidesPage = $page.url.pathname.startsWith('/guides');
 </script>
 
 <style>
@@ -21,6 +29,8 @@
     padding: 0.5rem 1.5rem;
     background-color: var(--color-background-default);
     transition: box-shadow 0.325s;
+    /* Ensure the header stays on top */
+    z-index: 100;
   }
   .title {
     font-size: 1.125rem;
@@ -44,7 +54,9 @@
 <div
   class="header"
   style:box-shadow={`${$scrolled ? "0 4px 8px 0 rgba(0,0,0,0.075)" : "0 4px 8px 0 rgba(0,0,0,0)"}`}>
-  <span class="title">RADWORKS</span>
+  <span class="title" on:click={() => navigateTo("/")} style="cursor: pointer">
+    RADWORKS
+  </span>
   <div class="header-right">
     <NakedButton variant="ghost" onclick={toggleTheme}>
       <Icon name={$theme === "dark" ? "moon" : "sun"}></Icon>
@@ -69,6 +81,10 @@
       variant="ghost">
       <Icon size="16" name="zulip" />
       Support
+    </NakedButton>
+    <NakedButton onclick={() => navigateTo("/guides")} variant="ghost" active={isGuidesPage}>
+      <Icon size="16" name="compass" />
+      Guides
     </NakedButton>
   </div>
 </div>

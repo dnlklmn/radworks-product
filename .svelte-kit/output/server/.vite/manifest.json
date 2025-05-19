@@ -1,0 +1,170 @@
+{
+  ".svelte-kit/generated/server/internal.js": {
+    "file": "internal.js",
+    "name": "internal",
+    "src": ".svelte-kit/generated/server/internal.js",
+    "isEntry": true,
+    "imports": [
+      "_internal.js"
+    ]
+  },
+  "_Icon.js": {
+    "file": "chunks/Icon.js",
+    "name": "Icon",
+    "imports": [
+      "_index.js"
+    ],
+    "css": [
+      "app/immutable/assets/Icon.CnFNOev9.css"
+    ]
+  },
+  "_client.js": {
+    "file": "chunks/client.js",
+    "name": "client",
+    "imports": [
+      "_exports.js",
+      "_index2.js",
+      "_index.js"
+    ]
+  },
+  "_exports.js": {
+    "file": "chunks/exports.js",
+    "name": "exports"
+  },
+  "_html.js": {
+    "file": "chunks/html.js",
+    "name": "html"
+  },
+  "_index.js": {
+    "file": "chunks/index.js",
+    "name": "index"
+  },
+  "_index2.js": {
+    "file": "chunks/index2.js",
+    "name": "index",
+    "imports": [
+      "_index.js"
+    ]
+  },
+  "_internal.js": {
+    "file": "chunks/internal.js",
+    "name": "internal",
+    "imports": [
+      "_index.js"
+    ],
+    "dynamicImports": [
+      "src/hooks.server.js"
+    ]
+  },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "name": "stores",
+    "imports": [
+      "_index.js",
+      "_client.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
+    "file": "entries/fallbacks/error.svelte.js",
+    "name": "entries/fallbacks/error.svelte",
+    "src": "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_client.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
+    "file": "index.js",
+    "name": "index",
+    "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_internal.js",
+      "_exports.js",
+      "_index2.js"
+    ]
+  },
+  "src/assets/desktop-review.mp4": {
+    "file": "app/immutable/assets/desktop-review.B_ORb4rA.mp4",
+    "src": "src/assets/desktop-review.mp4"
+  },
+  "src/hooks.server.js": {
+    "file": "chunks/hooks.server.js",
+    "name": "hooks.server",
+    "src": "src/hooks.server.js",
+    "isDynamicEntry": true
+  },
+  "src/routes/+layout.js": {
+    "file": "entries/pages/_layout.js",
+    "name": "entries/pages/_layout",
+    "src": "src/routes/+layout.js",
+    "isEntry": true
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_client.js",
+      "_stores.js",
+      "_Icon.js",
+      "_index2.js"
+    ],
+    "css": [
+      "app/immutable/assets/_layout.8CnxvUDp.css"
+    ]
+  },
+  "src/routes/+page.svelte": {
+    "file": "entries/pages/_page.svelte.js",
+    "name": "entries/pages/_page.svelte",
+    "src": "src/routes/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_html.js",
+      "_Icon.js"
+    ],
+    "css": [
+      "app/immutable/assets/_page.DBLEUIaF.css"
+    ]
+  },
+  "src/routes/guides/+layout.svelte": {
+    "file": "entries/pages/guides/_layout.svelte.js",
+    "name": "entries/pages/guides/_layout.svelte",
+    "src": "src/routes/guides/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_index2.js"
+    ],
+    "css": [
+      "app/immutable/assets/_layout.Szv9d3XG.css"
+    ]
+  },
+  "src/routes/guides/+page.js": {
+    "file": "entries/pages/guides/_page.js",
+    "name": "entries/pages/guides/_page",
+    "src": "src/routes/guides/+page.js",
+    "isEntry": true
+  },
+  "src/routes/guides/+page.svelte": {
+    "file": "entries/pages/guides/_page.svelte.js",
+    "name": "entries/pages/guides/_page.svelte",
+    "src": "src/routes/guides/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_index2.js",
+      "_stores.js",
+      "_html.js",
+      "_client.js"
+    ],
+    "css": [
+      "app/immutable/assets/_page.qs-m2J3w.css"
+    ]
+  }
+}
