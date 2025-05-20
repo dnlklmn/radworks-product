@@ -8,6 +8,17 @@
       "_internal.js"
     ]
   },
+  "_Download.js": {
+    "file": "chunks/Download.js",
+    "name": "Download",
+    "imports": [
+      "_index.js",
+      "_Icon.js"
+    ],
+    "css": [
+      "app/immutable/assets/Download.AaUgpNh4.css"
+    ]
+  },
   "_Icon.js": {
     "file": "chunks/Icon.js",
     "name": "Icon",
@@ -23,17 +34,12 @@
     "name": "client",
     "imports": [
       "_exports.js",
-      "_index2.js",
       "_index.js"
     ]
   },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
-  },
-  "_html.js": {
-    "file": "chunks/html.js",
-    "name": "html"
   },
   "_index.js": {
     "file": "chunks/index.js",
@@ -64,16 +70,6 @@
       "_client.js"
     ]
   },
-  "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
-    "file": "entries/fallbacks/error.svelte.js",
-    "name": "entries/fallbacks/error.svelte",
-    "src": "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index.js",
-      "_client.js"
-    ]
-  },
   "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
     "file": "index.js",
     "name": "index",
@@ -96,6 +92,19 @@
     "src": "src/hooks.server.js",
     "isDynamicEntry": true
   },
+  "src/routes/+error.svelte": {
+    "file": "entries/pages/_error.svelte.js",
+    "name": "entries/pages/_error.svelte",
+    "src": "src/routes/+error.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "_client.js"
+    ],
+    "css": [
+      "app/immutable/assets/_error.D6TukHZv.css"
+    ]
+  },
   "src/routes/+layout.js": {
     "file": "entries/pages/_layout.js",
     "name": "entries/pages/_layout",
@@ -115,7 +124,7 @@
       "_index2.js"
     ],
     "css": [
-      "app/immutable/assets/_layout.8CnxvUDp.css"
+      "app/immutable/assets/_layout.B1B4Q9mz.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -125,17 +134,16 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_html.js",
-      "_Icon.js"
+      "_Download.js"
     ],
     "css": [
-      "app/immutable/assets/_page.DBLEUIaF.css"
+      "app/immutable/assets/_page.CgNU35Qv.css"
     ]
   },
-  "src/routes/guides/+layout.svelte": {
-    "file": "entries/pages/guides/_layout.svelte.js",
-    "name": "entries/pages/guides/_layout.svelte",
-    "src": "src/routes/guides/+layout.svelte",
+  "src/routes/docs/+layout.svelte": {
+    "file": "entries/pages/docs/_layout.svelte.js",
+    "name": "entries/pages/docs/_layout.svelte",
+    "src": "src/routes/docs/+layout.svelte",
     "isEntry": true,
     "imports": [
       "_index.js",
@@ -145,26 +153,43 @@
       "app/immutable/assets/_layout.Szv9d3XG.css"
     ]
   },
-  "src/routes/guides/+page.js": {
-    "file": "entries/pages/guides/_page.js",
-    "name": "entries/pages/guides/_page",
-    "src": "src/routes/guides/+page.js",
+  "src/routes/docs/+page.js": {
+    "file": "entries/pages/docs/_page.js",
+    "name": "entries/pages/docs/_page",
+    "src": "src/routes/docs/+page.js",
     "isEntry": true
   },
-  "src/routes/guides/+page.svelte": {
-    "file": "entries/pages/guides/_page.svelte.js",
-    "name": "entries/pages/guides/_page.svelte",
-    "src": "src/routes/guides/+page.svelte",
+  "src/routes/docs/+page.svelte": {
+    "file": "entries/pages/docs/_page.svelte.js",
+    "name": "entries/pages/docs/_page.svelte",
+    "src": "src/routes/docs/+page.svelte",
     "isEntry": true,
     "imports": [
       "_index.js",
       "_index2.js",
       "_stores.js",
-      "_html.js",
+      "_Download.js",
       "_client.js"
     ],
     "css": [
-      "app/immutable/assets/_page.qs-m2J3w.css"
+      "app/immutable/assets/_page.BgXhGHzj.css"
+    ]
+  },
+  "src/routes/docs/[...slug]/+page.js": {
+    "file": "entries/pages/docs/_...slug_/_page.js",
+    "name": "entries/pages/docs/_...slug_/_page",
+    "src": "src/routes/docs/[...slug]/+page.js",
+    "isEntry": true
+  },
+  "src/routes/docs/[...slug]/+page.svelte": {
+    "file": "entries/pages/docs/_...slug_/_page.svelte.js",
+    "name": "entries/pages/docs/_...slug_/_page.svelte",
+    "src": "src/routes/docs/[...slug]/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js",
+      "src/routes/docs/+page.svelte",
+      "_stores.js"
     ]
   }
 }

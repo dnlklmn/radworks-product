@@ -8,6 +8,9 @@
   import { scrolled } from '../lib/stores';
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
+  
+  // Check if we're on the docs page
+  const isDocsPage = $derived($page.url.pathname.startsWith('/docs'));
 
   onMount(() => {
     const mainElement = document.querySelector('main');
@@ -27,14 +30,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
+  }
+  
+  /* Only apply overflow hidden to body on docs page */
+  :global(body.docs-page) {
+    overflow: hidden;
   }
 </style>
 
+<svelte:body class:docs-page={isDocsPage} />
 <main>
   <Header />
   <slot />
-  {#if !$page.url.pathname.startsWith('/guides')}
+  {#if !$page.url.pathname.startsWith('/guides') && !$page.url.pathname.startsWith('/docs')}
     <Footer />
   {/if}
 </main>

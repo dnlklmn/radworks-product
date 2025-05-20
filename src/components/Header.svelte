@@ -13,8 +13,8 @@
   function navigateTo(path: string) {
     goto(path);
   }
-  
-  $: isGuidesPage = $page.url.pathname.startsWith('/guides');
+
+  $: isGuidesPage = $page.url.pathname.startsWith("/guides");
 </script>
 
 <style>
@@ -38,7 +38,7 @@
     color: var(--color-foreground-contrast);
   }
   .header-right {
-    gap: 1rem;
+    gap: 0.5rem;
     display: none;
     justify-content: space-between;
     align-items: center;
@@ -82,9 +82,12 @@
       <Icon size="16" name="zulip" />
       Support
     </NakedButton>
-    <NakedButton onclick={() => navigateTo("/guides")} variant="ghost" active={isGuidesPage}>
-      <Icon size="16" name="compass" />
-      Guides
+    <NakedButton
+      onclick={() => navigateTo("/docs")}
+      variant="ghost"
+      active={isGuidesPage}>
+      <Icon size="16" name="docs" />
+      Docs
     </NakedButton>
   </div>
 </div>

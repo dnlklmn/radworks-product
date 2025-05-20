@@ -3,9 +3,13 @@
 		"src/routes/+layout.js",
 		"src/routes/+layout.js"
 	],
-	"/guides": [
-		"src/routes/guides/+page.js",
+	"/docs": [
+		"src/routes/docs/+page.js",
 		"src/routes/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/docs/[...slug]": [
+		"src/routes/docs/[...slug]/+page.js",
 		"src/routes/+layout.js"
 	]
 }

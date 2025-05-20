@@ -25,14 +25,17 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-bottom: 0.5rem;
   }
   .cmd-center {
     display: flex;
+    min-height: 2rem;
   }
   .cmd-vertical {
     background: var(--color-fill-ghost);
     width: 2px;
     height: 100%;
+    min-height: 2rem;
   }
   .cmd-horizontal {
     background: var(--color-border-hint);

@@ -15,13 +15,13 @@
     {
       title: "Always Local, Always Yours",
       description:
-        "Your entire repository — code, issues, patches — lives on your machine, always available.<br/>Work offline, sync when you’re online.",
+        "Your entire repository — code, issues, patches — lives on your machine, always available.<br/>Work offline, sync when you're online.",
       icon: "💾",
     },
     {
       title: "No Accounts, Just Keys",
       description:
-        "Identities in Radicle are public keys you generate locally — no signups, passwords, or email needed.<br/>You’re in control of your identity, always.",
+        "Identities in Radicle are public keys you generate locally — no signups, passwords, or email needed.<br/>You're in control of your identity, always.",
       icon: "🆔",
     },
     {
@@ -29,6 +29,12 @@
       description:
         "Every repository and identity is verified through cryptographic signatures, not centralized authority.",
       icon: "🔐",
+    },
+    {
+      title: "Community Governance",
+      description:
+        "Contribute to the network's evolution through transparent community-driven governance.<br/>No corporate roadmaps — the future is shaped by those who use it.",
+      icon: "🌐",
     },
   ] as const;
 </script>

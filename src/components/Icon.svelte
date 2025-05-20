@@ -28,7 +28,7 @@
       | "comment"
       | "comment-checkmark"
       | "comment-cross"
-      | "compass"
+      | "docs"
       | "copy"
       | "cross"
       | "dashboard"
@@ -389,53 +389,89 @@
     <path d="M6 6L7 6L7 7L6 7L6 6Z" />
     <path d="M2 4L3 4L3 8L2 8L2 4Z" />
   {:else if name === "comment-cross"}
-   <path d="M3 3L4 3L4 4L3 4L3 3Z" /> [L391]
-   <path d="M12 2L13 2L13 3L12 3L12 2Z" /> [L392]
-   <path d="M13 2L14 2L14 3L13 3L13 2Z" /> [L393]
-   <path d="M5 11L12 11L12 12L5 12L5 11Z" /> [L394]
-   <path d="M3 13L4 13L4 14L3 14L3 13Z" /> [L395]
-   <path d="M4 12L5 12L5 13L4 13L4 12Z" /> [L396]
-   <path d="M5 11L6 11L6 12L5 12L5 11Z" /> [L397]
-   <path d="M2 8L3 8L3 13L2 13L2 8Z" /> [L398]
-   <path d="M7 3L8 3L8 4L7 4L7 3Z" /> [L399]
-   <path d="M6 2L7 2L7 3L6 3L6 2Z" /> [L400]
-   <path d="M8 4L9 4L9 5L8 5L8 4Z" /> [L401]
-   <path d="M10 4L11 4L11 5L10 5L10 4Z" /> [L402]
-   <path d="M10 6L11 6L11 7L10 7L10 6Z" /> [L403]
-   <path d="M11 6L12 6L12 7L11 7L11 6Z" /> [L404]
-   <path d="M11 7L12 7L12 8L11 8L11 7Z" /> [L405]
-   <path d="M12 7L13 7L13 8L12 8L12 7Z" /> [L406]
-   <path d="M12 8L13 8L13 9L12 9L12 8Z" /> [L407]
-   <path d="M13 8L14 8L14 9L13 9L13 8Z" /> [L408]
-   <path d="M7 8L8 8L8 9L7 9L7 8Z" /> [L409]
-   <path d="M6 8L7 8L7 9L6 9L6 8Z" /> [L410]
-   <path d="M8 7L9 7L9 8L8 8L8 7Z" /> [L411]
-   <path d="M10 6L11 6L11 7L10 7L10 6Z" /> [L412]
-   <path d="M9 5L11 5L11 7L9 7L9 5Z" /> [L413]
-   <path d="M11 4L12 4L12 5L11 5L11 4Z" /> [L414]
-   <path d="M12 3L13 3L13 4L12 4L12 3Z" /> [L415]
-   <path d="M11 3L12 3L12 4L11 4L11 3Z" /> [L416]
-   <path d="M9 4L10 4L10 5L9 5L9 4Z" /> [L417]
-   <path d="M8 6L12 6L12 7L8 7L8 6Z" /> [L418]
-   <path d="M8 6L9 6L9 7L8 7L8 6Z" /> [L419]
-   <path d="M7 7L8 7L8 8L7 8L7 7Z" /> [L420]
-   <path d="M7 2L8 2L8 3L7 3L7 2Z" /> [L421]
-   <path d="M8 3L9 3L9 4L8 4L8 3Z" /> [L422]
-   <path d="M2 4L3 4L3 8L2 8L2 4Z" /> [L423]
-   <path d="M12 10L13 10L13 11L12 11L12 10Z" /> [L424]
-   <path d="M6 2L7 2L7 3L6 3L6 2Z" /> [L425]
-   <path d="M4 2L5 2L5 3L4 3L4 2Z" /> [L426]
-  {:else if name === "compass"}
-   <path d="M12 1V9H11V1L12 1Z" />
-   <path d="M1 1L1 9H2.14569e-07L5.6426e-07 1H1Z" />
-   <path d="M12 11V12H1L1 11H12Z" />
-   <path d="M11 9V11H10V9H11Z" />
-   <path d="M2 11V12H1L1 11H2Z" />
-   <path d="M1 9L1 11H0L2.14569e-07 9H1Z" />
-   <path d="M11 4.37114e-07V1L1 1L1 0L11 4.37114e-07Z" />
-   <path d="M11 8V9H2.14569e-07L3.25841e-07 8L11 8Z" />
-   <path d="M3 3H9V4H3V3Z" />
-   <path d="M3 5H9V6H3V5Z" />
+    <path d="M3 3L4 3L4 4L3 4L3 3Z" />
+    [L391]
+    <path d="M12 2L13 2L13 3L12 3L12 2Z" />
+    [L392]
+    <path d="M13 2L14 2L14 3L13 3L13 2Z" />
+    [L393]
+    <path d="M5 11L12 11L12 12L5 12L5 11Z" />
+    [L394]
+    <path d="M3 13L4 13L4 14L3 14L3 13Z" />
+    [L395]
+    <path d="M4 12L5 12L5 13L4 13L4 12Z" />
+    [L396]
+    <path d="M5 11L6 11L6 12L5 12L5 11Z" />
+    [L397]
+    <path d="M2 8L3 8L3 13L2 13L2 8Z" />
+    [L398]
+    <path d="M7 3L8 3L8 4L7 4L7 3Z" />
+    [L399]
+    <path d="M6 2L7 2L7 3L6 3L6 2Z" />
+    [L400]
+    <path d="M8 4L9 4L9 5L8 5L8 4Z" />
+    [L401]
+    <path d="M10 4L11 4L11 5L10 5L10 4Z" />
+    [L402]
+    <path d="M10 6L11 6L11 7L10 7L10 6Z" />
+    [L403]
+    <path d="M11 6L12 6L12 7L11 7L11 6Z" />
+    [L404]
+    <path d="M11 7L12 7L12 8L11 8L11 7Z" />
+    [L405]
+    <path d="M12 7L13 7L13 8L12 8L12 7Z" />
+    [L406]
+    <path d="M12 8L13 8L13 9L12 9L12 8Z" />
+    [L407]
+    <path d="M13 8L14 8L14 9L13 9L13 8Z" />
+    [L408]
+    <path d="M7 8L8 8L8 9L7 9L7 8Z" />
+    [L409]
+    <path d="M6 8L7 8L7 9L6 9L6 8Z" />
+    [L410]
+    <path d="M8 7L9 7L9 8L8 8L8 7Z" />
+    [L411]
+    <path d="M10 6L11 6L11 7L10 7L10 6Z" />
+    [L412]
+    <path d="M9 5L11 5L11 7L9 7L9 5Z" />
+    [L413]
+    <path d="M11 4L12 4L12 5L11 5L11 4Z" />
+    [L414]
+    <path d="M12 3L13 3L13 4L12 4L12 3Z" />
+    [L415]
+    <path d="M11 3L12 3L12 4L11 4L11 3Z" />
+    [L416]
+    <path d="M9 4L10 4L10 5L9 5L9 4Z" />
+    [L417]
+    <path d="M8 6L12 6L12 7L8 7L8 6Z" />
+    [L418]
+    <path d="M8 6L9 6L9 7L8 7L8 6Z" />
+    [L419]
+    <path d="M7 7L8 7L8 8L7 8L7 7Z" />
+    [L420]
+    <path d="M7 2L8 2L8 3L7 3L7 2Z" />
+    [L421]
+    <path d="M8 3L9 3L9 4L8 4L8 3Z" />
+    [L422]
+    <path d="M2 4L3 4L3 8L2 8L2 4Z" />
+    [L423]
+    <path d="M12 10L13 10L13 11L12 11L12 10Z" />
+    [L424]
+    <path d="M6 2L7 2L7 3L6 3L6 2Z" />
+    [L425]
+    <path d="M4 2L5 2L5 3L4 3L4 2Z" />
+    [L426]
+  {:else if name === "docs"}
+    <path d="M14 3V11H13V3L14 3Z" />
+    <path d="M3 3L3 11H2L2 3H3Z" />
+    <path d="M14 13V14H3L3 13H14Z" />
+    <path d="M13 11V13H12V11H13Z" />
+    <path d="M4 13V14H3L3 13H4Z" />
+    <path d="M3 11L3 13H2L2 11H3Z" />
+    <path d="M13 2V3L3 3L3 2L13 2Z" />
+    <path d="M13 10V11H2L2 10L13 10Z" />
+    <path d="M5 5H11V6H5V5Z" />
+    <path d="M5 7H11V8H5V7Z" />
   {:else if name === "copy"}
     <path d="M6.5 2H13.5V3H6.5V2Z" />
     <path d="M3.5 5H4.5V6H3.5V5Z" />

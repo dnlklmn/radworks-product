@@ -1,214 +1,128 @@
-<script lang="ts">
-  import { page } from '$app/stores';
-  import { writable } from 'svelte/store';
-  import { onMount } from 'svelte';
-  
+<script>
+  import { page } from "$app/stores";
+  import { writable } from "svelte/store";
+  import { onMount } from "svelte";
+
   // Stores for tracking which section and subsection are active in the viewport
-  export let activeSection = writable<string>('');
-  export let activeSubSection = writable<string>('');
+  export let activeSection = writable("");
+  export let activeSubSection = writable("");
 
   // Props
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher<{
-    navigate: {path: string, title: string};
-    scrollToSection: {sectionId: string};
-  }>();
-  
-  export let onNavigate: ((path: string, title: string) => void) | undefined = undefined;
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
 
-  // Define types for our navigation structure
-  type NavItem = {
-    title: string;
-    href: string;
-    id?: string; // Optional ID for scrolling to specific sections
-  };
+  export let onNavigate = undefined;
 
-  type NavSection = {
-    title: string;
-    href: string;
-    items: NavItem[];
-  };
+  const navigationStore = writable([]);
 
-  const navigationStore = writable<NavSection[]>([]);
-  const loadingError = writable<string | null>(null);
-  const isLoading = writable(true);
+  const expandedSections = writable({});
 
-  // This will hold the expanded state of menu sections
-  const expandedSections = writable<Record<string, boolean>>({});
-  
-
-
-  // Set the guides navigation structure
-  function fetchGuidesContent() {
-    isLoading.set(true);
-    try {
-      // Create a predefined navigation structure for all guides
-      const sections = [
+  // Set the guides navigation structure directly
+  const sections = [
+    {
+      title: "Getting Started",
+      href: "desktop-guide",
+      items: [
+        { title: "Overview", id: "getting-started", href: "desktop-guide" },
+        { title: "Installation", id: "installation", href: "desktop-guide" },
         {
-          title: 'Getting Started',
-          href: '#getting-started-guide',
-          items: [
-            { title: 'Prerequisites', href: '#getting-started-guide', id: 'prerequisites' },
-            { title: 'Installation Steps', href: '#getting-started-guide', id: 'installation-steps' },
-            { title: 'First Steps', href: '#getting-started-guide', id: 'first-steps' },
-            { title: 'Collaboration', href: '#getting-started-guide', id: 'collaboration' }
-          ] as NavItem[]
+          title: "Build from Source",
+          id: "build-from-source",
+          href: "desktop-guide",
         },
+        { title: "Prerequisites", id: "prerequisites", href: "desktop-guide" },
+      ],
+    },
+    {
+      title: "Desktop App",
+      href: "desktop-guide",
+      items: [
         {
-          title: 'Desktop App Guide',
-          href: '#desktop-guide',
-          items: [
-            { title: 'Introduction', href: '#desktop-guide', id: 'introduction' },
-            { title: 'Installation', href: '#desktop-guide', id: 'installation' },
-            { title: 'Getting Started', href: '#desktop-guide', id: 'getting-started' }
-          ] as NavItem[]
+          title: "First Steps",
+          id: "first-steps",
+          href: "desktop-guide",
         },
+        { title: "Issues", id: "features", href: "desktop-guide" },
+        { title: "Patches", id: "patches", href: "desktop-guide" },
+        { title: "Code Review", id: "code-review", href: "desktop-guide" },
+        { title: "Inbox", id: "inbox", href: "desktop-guide" },
+      ],
+    },
+    {
+      title: "Radicle CLI",
+      href: "desktop-guide",
+      items: [
         {
-          title: 'Radicle Protocol',
-          href: '#radicle-protocol',
-          items: [
-            { title: 'Protocol Overview', href: '#radicle-protocol', id: 'protocol-overview' },
-            { title: 'Architecture', href: '#radicle-protocol', id: 'protocol-architecture' },
-            { title: 'Security Model', href: '#radicle-protocol', id: 'protocol-security' }
-          ] as NavItem[]
+          title: "First Steps",
+          id: "first-steps",
+          href: "desktop-guide",
         },
+        { title: "Radicle Node", id: "radicle-node", href: "desktop-guide" },
         {
-          title: 'Radicle Network',
-          href: '#radicle-network',
-          items: [
-            { title: 'Network Overview', href: '#radicle-network', id: 'network-overview' },
-            { title: 'Network Participants', href: '#radicle-network', id: 'network-participants' },
-            { title: 'Network Interactions', href: '#radicle-network', id: 'network-interactions' }
-          ] as NavItem[]
+          title: "Radicle Storage",
+          id: "radicle-storage",
+          href: "desktop-guide",
         },
-        {
-          title: 'Features',
-          href: '#desktop-guide',
-          items: [
-            { title: 'Repository Management', href: '#desktop-guide', id: 'features' },
-            { title: 'Issue Tracking', href: '#desktop-guide', id: 'features' },
-            { title: 'Code Reviews', href: '#desktop-guide', id: 'features' }
-          ] as NavItem[]
-        },
-        {
-          title: 'FAQ',
-          href: '#desktop-guide',
-          items: [
-            { title: 'Comparison with GitHub', href: '#desktop-guide', id: 'faq' },
-            { title: 'Offline Usage', href: '#desktop-guide', id: 'faq' },
-            { title: 'Open Source Status', href: '#desktop-guide', id: 'faq' },
-            { title: 'Finding Repositories', href: '#desktop-guide', id: 'faq' }
-          ] as NavItem[]
-        }
-      ];
-      
-      // Set up initial expanded states
-      const initialExpandedState: Record<string, boolean> = {};
-      sections.forEach(section => {
-        initialExpandedState[section.title] = true;
-      });
-      
-      expandedSections.set(initialExpandedState);
-      navigationStore.set(sections);
-    } catch (error: unknown) {
-      console.error('Error setting guides content:', error);
-      if (error instanceof Error) {
-        loadingError.set(error.message);
-      } else {
-        loadingError.set('An unknown error occurred');
-      }
-    } finally {
-      isLoading.set(false);
-    }
-  }
+      ],
+    },
+    {
+      title: "FAQ",
+      href: "desktop-guide",
+      items: [
+        { title: "Comparison with GitHub", id: "faq", href: "desktop-guide" },
+        { title: "Offline Usage", id: "faq", href: "desktop-guide" },
+        { title: "Open Source Status", id: "faq", href: "desktop-guide" },
+        { title: "Finding Repositories", id: "faq", href: "desktop-guide" },
+      ],
+    },
+  ];
 
-  function toggleSection(sectionTitle: string) {
+  // Initialize expanded state
+  const initialExpandedState = {};
+  sections.forEach(section => {
+    initialExpandedState[section.title] = true;
+  });
+
+  expandedSections.set(initialExpandedState);
+  navigationStore.set(sections);
+
+  function toggleSection(sectionTitle) {
     expandedSections.update(state => ({
       ...state,
-      [sectionTitle]: !state[sectionTitle]
+      [sectionTitle]: !state[sectionTitle],
     }));
   }
 
-  function handleItemClick(href: string, title: string, event: MouseEvent, sectionId?: string) {
+  function handleItemClick(href, title, event, sectionId) {
     event.preventDefault();
-    
-    // Update the active section immediately for better user feedback
-    $activeSection = href.startsWith('#') ? href.substring(1) : href;
+
+    // Always set activeSection to desktop-guide
+    $activeSection = "desktop-guide";
     if (sectionId) {
       $activeSubSection = sectionId;
     }
-    
-    // If sectionId is provided, append it to the href for scrolling to specific section
-    const fullPath = sectionId ? `${href}#${sectionId}` : href;
-    
+
+    // We only care about the hash fragment now
+    const fullPath = sectionId ? `desktop-guide#${sectionId}` : "desktop-guide";
+
     // Dispatch the navigate event
     if (onNavigate) {
       onNavigate(fullPath, title);
     } else {
-      dispatch('navigate', { path: fullPath, title });
+      dispatch("navigate", { path: fullPath, title });
     }
-    
+
     // Dispatch a separate custom event for scrolling to the section
     if (sectionId) {
       // Custom event to trigger scrolling
-      dispatch('scrollToSection', { sectionId });
+      dispatch("scrollToSection", { sectionId });
     }
   }
 
   $: currentPath = $page.url.pathname;
 
-  onMount(() => {
-    fetchGuidesContent();
-  });
+  // Navigation is already initialized directly
 </script>
-
-<nav class="guides-sidebar">
-  {#if $isLoading}
-    <div class="loading">Loading guide navigation...</div>
-  {:else if $loadingError}
-    <div class="error">Error loading guide: {$loadingError}</div>
-  {:else}
-    <div class="navigation">
-      {#each $navigationStore as section}
-        <div class="section">
-          <div class="section-header-container">
-            <button 
-              class="section-header" 
-              on:click={(e) => {
-                // Navigate to the section
-                handleItemClick(section.href, section.title, e);
-                // Also toggle the section's expanded state
-                toggleSection(section.title);
-              }}
-              class:active={section.href === $activeSection}
-              aria-expanded={$expandedSections[section.title] ? 'true' : 'false'}
-            >
-              <span>{section.title}</span>
-              <span class="toggle-icon">{$expandedSections[section.title] ? '−' : '+'}</span>
-            </button>
-          </div>
-          
-          {#if $expandedSections[section.title]}
-            <ul>
-              {#each section.items as item}
-                <li>
-                  <a 
-                    href={item.href}
-                    class="nav-link"
-                    class:active={(section.href === $activeSection) && (item.id === $activeSubSection)}
-                    on:click={(e) => handleItemClick(section.href, item.title, e, item.id || item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'))}
-                  >
-                    {item.title}
-                  </a>
-                </li>
-              {/each}
-            </ul>
-          {/if}
-        </div>
-      {/each}
-    </div>
-  {/if}
-</nav>
 
 <style>
   .guides-sidebar {
@@ -219,19 +133,8 @@
     /* Ensure smooth scrolling */
     scroll-behavior: smooth;
   }
-  
-
 
   /* Main styles for the sidebar content */
-
-  .loading, .error {
-    padding: 1rem 1.5rem;
-    color: var(--color-foreground-contrast);
-  }
-
-  .error {
-    color: #ef4444;
-  }
 
   .navigation {
     padding: 0 0.5rem;
@@ -263,7 +166,6 @@
   }
 
   .section-header.active {
-    background-color: var(--color-fill-separator);
     color: var(--color-foreground-contrast);
   }
 
@@ -297,6 +199,58 @@
     background-color: var(--color-fill-separator);
     color: var(--color-foreground-contrast);
     font-weight: 500;
-    border-left: 3px solid var(--color-foreground-contrast);
+  }
+  .nav-link.active:hover {
+    background-color: var(--color-fill-separator);
   }
 </style>
+
+<nav class="guides-sidebar">
+  <div class="navigation">
+    {#each $navigationStore as section}
+      <div class="section">
+        <div class="section-header-container">
+          <button
+            class="section-header"
+            on:click={e => {
+              // Navigate to the section
+              handleItemClick(section.href, section.title, e);
+              // Also toggle the section's expanded state
+              toggleSection(section.title);
+            }}
+            class:active={section.href === $activeSection}
+            aria-expanded={$expandedSections[section.title] ? "true" : "false"}>
+            <span>{section.title}</span>
+            <span class="toggle-icon">
+              {$expandedSections[section.title] ? "−" : "+"}
+            </span>
+          </button>
+        </div>
+
+        {#if $expandedSections[section.title]}
+          <ul>
+            {#each section.items as item}
+              <li>
+                <a
+                  href={item.href}
+                  class="nav-link"
+                  class:active={section.href === $activeSection &&
+                    item.id === $activeSubSection}
+                  on:click={e =>
+                    handleItemClick(
+                      section.href,
+                      item.title,
+                      e,
+                      item.id ||
+                        item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+                    )}>
+                  {item.title}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        {/if}
+      </div>
+    {/each}
+  </div>
+</nav>

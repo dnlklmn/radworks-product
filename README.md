@@ -1,47 +1,99 @@
-# Svelte + Vite
+# Radworks Product Site
 
-This template should help get you started developing with Svelte in Vite.
+This repository contains the code for the Radworks product site, which showcases Radicle - a peer-to-peer code collaboration platform.
 
-## Recommended IDE Setup
+## Features
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- Modern UI with responsive design
+- Built with SvelteKit and Vite
+- Static site generation for fast loading
+- Single Page Application (SPA) architecture
 
-## Need an official Svelte framework?
+## Development
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+### Prerequisites
 
-## Technical considerations
+- Node.js 18.x or higher
+- npm 9.x or higher
 
-**Why use this over SvelteKit?**
+### Setup
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+1. Clone the repository
+2. Install dependencies:
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+npm install
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+The site will be available at http://localhost:5173/
+
+### Building
+
+To build the site for production:
+
+```bash
+npm run build
+```
+
+This generates static files in the `build` directory.
+
+To preview the production build:
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+### Deploying to Vercel
+
+This project is configured for seamless deployment to Vercel.
+
+1. Push your changes to your repository
+2. Connect your repository to Vercel
+3. Vercel will automatically detect the SvelteKit project
+4. Make sure the following settings are configured in your Vercel project:
+   - Framework Preset: `Other`
+   - Build Command: `npm run vercel-build`
+   - Output Directory: `public`
+
+The deployment will use the custom `vercel-build` script that ensures all assets are properly built and placed in the correct directories.
+
+## Project Structure
+
+```
+/
+├── public/           # Generated deployment files (not committed)
+├── build/            # Generated build files (not committed)
+├── scripts/          # Build and deployment scripts
+├── src/              # Source code
+│   ├── components/   # Reusable UI components
+│   ├── lib/          # Utility functions and stores
+│   ├── routes/       # SvelteKit pages and layouts
+│   └── assets/       # Static assets like images
+├── static/           # Static files to be copied to build
+└── ...               # Configuration files
+```
+
+## Adding New Features
+
+To add a new feature to the home page, edit `src/components/Features.svelte` and add your feature to the features array.
+
+## Troubleshooting
+
+If you encounter issues with deployment:
+
+1. Make sure the `vercel.json` file is correctly configured
+2. Ensure `scripts/prepare-for-vercel.sh` is executable: `chmod +x scripts/prepare-for-vercel.sh`
+3. Run `npm run clean` and then try building again
+4. Check for any errors in the build logs
+
+## License
+
+Copyright © Radworks, Inc. All rights reserved.

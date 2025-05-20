@@ -3,6 +3,11 @@
   import Button from "./Button.svelte";
   import Icon from "./Icon.svelte";
 
+  const { hidesourcecode = false } = $props<{ hidesourcecode?: boolean | string }>();
+  let hideSourceCode = $state(typeof hidesourcecode === "string" 
+    ? hidesourcecode === "true"
+    : hidesourcecode);
+
   const version = "0.3.0";
   const releaseFolder = "2025-05-08T16:24:32Z_25c6ab32";
   const buildSha = releaseFolder.split("_")[1];
@@ -155,12 +160,14 @@
       </p>
     {/if}
   </div>
-  <span class="or-source-code">
-    Or check out the
-    <a
-      target="_blank"
-      href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z4D5UCArafTzTQpDZNQRuqswh3ury">
-      source code.
-    </a>
-  </span>
+  {#if !hideSourceCode}
+    <span class="or-source-code">
+      Or check out the
+      <a
+        target="_blank"
+        href="https://app.radicle.xyz/nodes/seed.radicle.xyz/rad:z4D5UCArafTzTQpDZNQRuqswh3ury">
+        source code.
+      </a>
+    </span>
+  {/if}
 </div>

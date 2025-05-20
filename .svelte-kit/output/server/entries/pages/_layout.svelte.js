@@ -59,9 +59,9 @@ function Header($$payload, $$props) {
     goto();
   }
   isGuidesPage = store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/guides");
-  $$payload.out += `<div class="header svelte-1pci7qj"${attr_style("", {
+  $$payload.out += `<div class="header svelte-bjc4e9"${attr_style("", {
     "box-shadow": `${store_get($$store_subs ??= {}, "$scrolled", scrolled) ? "0 4px 8px 0 rgba(0,0,0,0.075)" : "0 4px 8px 0 rgba(0,0,0,0)"}`
-  })}><span class="title svelte-1pci7qj" style="cursor: pointer">RADWORKS</span> <div class="header-right svelte-1pci7qj">`;
+  })}><span class="title svelte-bjc4e9" style="cursor: pointer">RADWORKS</span> <div class="header-right svelte-bjc4e9">`;
   NakedButton($$payload, {
     variant: "ghost",
     onclick: toggleTheme,
@@ -104,8 +104,8 @@ function Header($$payload, $$props) {
     variant: "ghost",
     active: isGuidesPage,
     children: ($$payload2) => {
-      Icon($$payload2, { size: "16", name: "compass" });
-      $$payload2.out += `<!----> Guides`;
+      Icon($$payload2, { size: "16", name: "docs" });
+      $$payload2.out += `<!----> Docs`;
     }
   });
   $$payload.out += `<!----></div></div>`;
@@ -118,12 +118,13 @@ function Footer($$payload) {
 function _layout($$payload, $$props) {
   push();
   var $$store_subs;
-  $$payload.out += `<main class="svelte-1u8hf0m">`;
+  store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/docs");
+  $$payload.out += `<main class="svelte-10iroze">`;
   Header($$payload);
   $$payload.out += `<!----> <!---->`;
   slot($$payload, $$props, "default", {});
   $$payload.out += `<!----> `;
-  if (!store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/guides")) {
+  if (!store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/guides") && !store_get($$store_subs ??= {}, "$page", page).url.pathname.startsWith("/docs")) {
     $$payload.out += "<!--[-->";
     Footer($$payload);
   } else {

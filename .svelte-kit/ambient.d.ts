@@ -66,6 +66,7 @@ declare module '$env/static/private' {
 	export const npm_package_name: string;
 	export const npm_config_npm_version: string;
 	export const XPC_FLAGS: string;
+	export const npm_package_engines_node: string;
 	export const npm_config_node_gyp: string;
 	export const RBENV_SHELL: string;
 	export const npm_package_version: string;
@@ -160,6 +161,7 @@ declare module '$env/dynamic/private' {
 		npm_package_name: string;
 		npm_config_npm_version: string;
 		XPC_FLAGS: string;
+		npm_package_engines_node: string;
 		npm_config_node_gyp: string;
 		RBENV_SHELL: string;
 		npm_package_version: string;
