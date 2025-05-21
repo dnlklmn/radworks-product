@@ -1,13 +1,6 @@
 #!/bin/sh
 set -e
 
-# Run TypeScript type checking
 npx tsc --noEmit
-
-# Run Svelte checking
 npx svelte-check --tsconfig tsconfig.json --fail-on-warnings --compiler-warnings missing-custom-element-compile-options:ignore
-
-# Check code formatting
-npx prettier "**/*.@(ts|js|svelte|json|css|html|yml|md)" --ignore-path .gitignore --check --cache
-
-echo "✅ All checks passed!"
+npx prettier "**/*.@(ts|js|svelte|json|css|html|yml)" "!crates/**/*" --ignore-path .gitignore --check --cache

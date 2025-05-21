@@ -6,12 +6,10 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "vercel-build": "./scripts/prepare-for-vercel.sh",
+    "vercel-build": "vite build",
     "preview": "vite preview",
     "check": "scripts/check && svelte-kit sync && svelte-check",
-    "format": "npx prettier '**/*.@(ts|js|svelte|json|css|html|yml|md)' --write",
-    "clean": "rm -rf build dist public .svelte-kit node_modules/.vite",
-    "test-build": "npm run clean && npm run build && echo 'Build test completed successfully!'"
+    "format": "npx prettier '**/*.@(ts|js|svelte|json|css|html|yml|md)' --write"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.0",
@@ -34,8 +32,5 @@
   },
   "overrides": {
     "@sveltejs/vite-plugin-svelte": "^4.0.0-next.6"
-  },
-  "engines": {
-    "node": ">=18.0.0"
   }
 }
