@@ -46,6 +46,7 @@
 </script>
 
 <style>
+
   .buttons {
     display: flex;
     flex-direction: column;
@@ -57,6 +58,48 @@
 
   .buttons a {
     text-decoration: none;
+  }
+  
+  /* Row containing Button and Command */
+  .download-row {
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: stretch;
+    height: 36px; /* Fixed height for the row */
+  }
+  
+  /* Command container */
+  .command-container {
+    flex: 1;
+    width: calc(100% - 200px);
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Custom styling for Command component */
+  .command-container :global(.wrapper) {
+    height: 36px;
+    margin-bottom: 0;
+  }
+  
+  .command-container :global(.cmd) {
+    height: 32px;
+    line-height: 32px;
+  }
+  
+  /* Right vertical line */
+  .command-container::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    right: 0;
+    width: 2px;
+    background: var(--color-fill-ghost);
+    z-index: 2;
   }
   .download-instructions {
     font-size: 0.9rem;
@@ -92,6 +135,7 @@
   }
   .dropdown-content.show {
     display: block;
+
   }
   .dropdown-item {
     padding: 8px 12px;
@@ -99,6 +143,7 @@
     align-items: center;
     gap: 6px;
     cursor: pointer;
+
   }
   .dropdown-item:hover {
     background-color: var(--color-background-float);
@@ -117,8 +162,8 @@
 </style>
 
 <div class="buttons">
-  <div style:display="flex" style:width="100%">
-    <div class="dropdown">
+  <div class="download-row">
+    <div class="dropdown" style:z-index="2">
       <Button
         fixedWidth="200px"
         variant="ghost"
@@ -143,7 +188,7 @@
         </div>
       </div>
     </div>
-    <div style:flex="1" style:width="100%" style:overflow="hidden">
+    <div class="command-container">
       <Command flatLeft {command} fullWidth></Command>
     </div>
   </div>

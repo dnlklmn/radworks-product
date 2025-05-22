@@ -40,15 +40,10 @@
   .container {
     white-space: nowrap;
     height: 100%;
-
+    min-height: 2rem;
     font-weight: 500;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
     user-select: none;
-
     color: var(--text-color);
-
     column-gap: 0;
     row-gap: 0;
     display: grid;
@@ -319,6 +314,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    height: 100%;
   }
   .p3-4 {
     grid-area: p3-4;

@@ -1258,6 +1258,9 @@ function attr(name, value, is_boolean = false) {
 const whitespace = [..." 	\n\r\f \v\uFEFF"];
 function to_class(value, hash, directives) {
   var classname = value == null ? "" : "" + value;
+  if (hash) {
+    classname = classname ? classname + " " + hash : hash;
+  }
   if (directives) {
     for (var key in directives) {
       if (directives[key]) {
@@ -1510,6 +1513,9 @@ function head(payload, fn) {
   fn(head_payload);
   head_payload.out += BLOCK_CLOSE;
 }
+function stringify(value) {
+  return typeof value === "string" ? value : value == null ? "" : value + "";
+}
 function attr_class(value, hash, directives) {
   var result = to_class(value, hash, directives);
   return result ? ` class="${escape_html(result, true)}"` : "";
@@ -1574,20 +1580,21 @@ export {
   attr_style as F,
   store_get as G,
   HYDRATION_ERROR as H,
-  unsubscribe_stores as I,
-  slot as J,
-  head as K,
+  escape_html as I,
+  unsubscribe_stores as J,
+  store_set as K,
   LEGACY_PROPS as L,
-  ensure_array_like as M,
-  escape_html as N,
-  bind_props as O,
-  copy_payload as P,
-  assign_payload as Q,
-  fallback as R,
-  store_set as S,
+  slot as M,
+  head as N,
+  ensure_array_like as O,
+  fallback as P,
+  bind_props as Q,
+  copy_payload as R,
+  assign_payload as S,
   getContext as T,
-  noop as U,
-  safe_not_equal as V,
+  stringify as U,
+  noop as V,
+  safe_not_equal as W,
   set_active_effect as a,
   active_effect as b,
   active_reaction as c,

@@ -1,4 +1,5 @@
 import { E as attr, C as attr_class, F as attr_style, B as pop, z as push } from "./index.js";
+/* empty css                                   */
 function Icon($$payload, $$props) {
   push();
   const {

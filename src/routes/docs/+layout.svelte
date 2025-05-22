@@ -8,7 +8,9 @@
   // Make the showMobileSidebar store available to child components
   setContext("showMobileSidebar", showMobileSidebar);
 
-  function toggleMobileSidebar() {
+  function toggleMobileSidebar(event: MouseEvent) {
+    // Prevent event propagation to avoid the document click handler from immediately closing it
+    event.stopPropagation();
     $showMobileSidebar = !$showMobileSidebar;
   }
 
@@ -42,10 +44,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: var(--color-fill-primary);
+    background-color: var(--color-fill-ghost);
     color: var(--color-foreground-contrast);
-    align-items: center;
-    justify-content: center;
     font-size: 24px;
     cursor: pointer;
     z-index: 50;
@@ -58,8 +58,17 @@
 
   .mobile-toggle:hover,
   .mobile-toggle:focus {
-    background-color: var(--color-fill-primary-hover);
+    background-color: var(--color-fill-ghost-hover);
     transform: scale(1.05);
+  }
+  
+  .menu-icon,
+  .close-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
   }
 
   @media (max-width: 768px) {

@@ -45,19 +45,72 @@
 
   // Function to scroll to a specific section by ID
   export function scrollToSection(sectionId) {
+    console.log(`GuideContent: Attempting to scroll to section: ${sectionId}`);
+    
     if (contentElement && sectionId) {
-      // Simple direct ID match
+      // Log all sections in the document for debugging
+      const allSections = document.querySelectorAll('section');
+      console.log(`Found ${allSections.length} sections in the document`);
+      allSections.forEach(section => {
+        console.log(`Section ID: ${section.id}`);
+      });
+      
+      // Log all headings in the document for debugging
+      const allHeadings = document.querySelectorAll('h1, h2, h3');
+      console.log(`Found ${allHeadings.length} headings in the document`);
+      allHeadings.forEach(heading => {
+        const text = heading.textContent || '';
+        const generatedId = text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        console.log(`Heading: ${text}, Generated ID: ${generatedId}`);
+      });
+      
+      // Try to find the section directly by ID first
       let targetElement = document.getElementById(sectionId);
+      console.log(`Direct ID lookup result: ${targetElement ? 'Found' : 'Not found'}`);
+      
+      // If not found by ID, try to find by generated ID from heading text
+      if (!targetElement) {
+        allHeadings.forEach(heading => {
+          if (!targetElement) {
+            const text = heading.textContent || '';
+            const generatedId = text.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            
+            if (generatedId === sectionId) {
+              console.log(`Found matching heading: ${text}`);
+              // Try to find the parent section
+              let parent = heading.parentElement;
+              while (parent && parent.tagName !== 'SECTION' && parent !== contentElement) {
+                parent = parent.parentElement;
+              }
+              
+              if (parent && parent.tagName === 'SECTION') {
+                targetElement = parent;
+                console.log(`Found parent section for heading: ${text}`);
+              } else {
+                // If no parent section, use the heading itself
+                targetElement = heading;
+                console.log(`Using heading directly: ${text}`);
+              }
+            }
+          }
+        });
+      }
       
       // If found, scroll to it
       if (targetElement) {
+        console.log(`Found element to scroll to:`, targetElement);
+        // Force a reflow to ensure the element is properly positioned
+        void targetElement.offsetHeight;
+        
+        // Scroll to the element
         targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        
         // Update active subsection
         $activeSubSection = sectionId;
       } else {
         console.warn(`Section with ID "${sectionId}" not found in content`);
         // Fallback: try to jump to the main section
-        const mainSection = document.querySelector(`.desktop-app-guide`);
+        const mainSection = document.querySelector('.desktop-app-guide');
         if (mainSection) {
           mainSection.scrollIntoView({
             behavior: "smooth",
@@ -72,11 +125,17 @@
   $: {
     // Make sure the active section is updated when the section changes
     $activeSection = section;
+    // Reference to the GuideContent component for calling its methods
+    let guideContentRef;
+
+    // Reference to the DesktopAppGuide component
+    let desktopAppGuideRef;
+
+    // Store a reference to the intersection observer
+    let observer = null;
+
     setTimeout(handleContentUpdate, 0);
   }
-
-  // Store a reference to the intersection observer
-  let observer = null;
 
   // Set up the intersection observer to track which sections are in view
   function setupIntersectionObserver() {
@@ -289,6 +348,7 @@
 <div class="guide-content">
   <div class="content" bind:this={contentElement}>
     <DesktopAppGuide 
+      bind:this={desktopAppGuideRef}
       {activeSection} 
       {activeSubSection} 
       on:scrollToSection={(e) => scrollToSection(e.detail.sectionId)} 

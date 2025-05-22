@@ -1,6 +1,6 @@
 <script>
   import { writable } from "svelte/store";
-  import GuidesSidebar from "$lib/components/GuidesSidebar.svelte";
+  import GuideSidebar from "$lib/components/GuideSidebar.svelte";
   import GuideContent from "$lib/components/GuideContent.svelte";
   import { page } from "$app/stores";
 
@@ -128,16 +128,17 @@
       position: fixed;
       top: 56px;
       left: 0;
-      right: 0;
+      width: 280px;
       bottom: 0;
       transform: translateX(-100%);
       transition: transform 0.3s ease;
       z-index: 40;
+      background-color: var(--color-background-default);
     }
 
     .guides-sidebar.show-mobile {
       transform: translateX(0);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
   }
 </style>
@@ -148,7 +149,7 @@
 
 <div class="guides-container">
   <aside class="guides-sidebar" class:show-mobile={$showMobileSidebar}>
-    <GuidesSidebar
+    <GuideSidebar
       onNavigate={handleNavigation}
       {activeSection}
       {activeSubSection}

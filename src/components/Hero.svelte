@@ -101,12 +101,13 @@
   }
 
   .hero-text {
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 1rem;
+    width: 100%;
   }
 
   @media (min-width: 1024px) {
@@ -121,7 +122,7 @@
 
   .video-container {
     position: relative;
-    padding: 0;
+    padding: 0 1rem;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top;
@@ -131,11 +132,22 @@
     width: min(560px, 100%);
   }
 
+  .download-container {
+      display: none;
+      width: 100%;
+    }
+
   @media (min-width: 1024px) {
     .video-container {
       flex: 3;
       padding: 0;
       width: min(750px, 100%);
+    }
+
+    .download-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
   .preloader {
@@ -266,7 +278,8 @@
       your team — all on a peer-to-peer network. Say goodbye to platform
       lock-in. Radicle runs locally and syncs with your network.
     </span>
-    <Download />
+    <div class='download-container' >
+    <Download /></div>
   </div>
   <div class="video-container">
     <div class="preloader">Loading...</div>

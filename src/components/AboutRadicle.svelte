@@ -94,7 +94,26 @@
 
   .float-background {
     background: var(--color-background-float);
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 0 1rem 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .float-background {
+      padding: 1rem 2rem 1rem 2rem;
+      gap: 0;
+    }
+    .widget-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 960px;
+    gap: 4rem;
+  }
   }
 
   .widget-container {
@@ -104,7 +123,6 @@
     justify-content: center;
     width: 100%;
     max-width: 960px;
-    gap: 4rem;
   }
 
   .title-block {

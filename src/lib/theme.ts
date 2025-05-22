@@ -21,15 +21,43 @@ function loadTheme(): Theme {
 }
 
 function createThemeStore() {
-  const { subscribe, set } = writable<Theme>(loadTheme());
+  // Initialize with a default value that will be updated immediately on client-side
+  const { subscribe, set, update } = writable<Theme>(loadTheme());
+
+  // If in browser, ensure we load from localStorage on initialization and apply it immediately
+  if (isBrowser()) {
+    // Apply theme immediately to prevent flash of wrong theme
+    const storedTheme = loadTheme();
+    document.documentElement.setAttribute('data-theme', storedTheme);
+    
+    // Use setTimeout to ensure this runs after the component is mounted
+    setTimeout(() => {
+      const currentTheme = loadTheme();
+      set(currentTheme);
+      // Dispatch a custom event that components can listen for
+      window.dispatchEvent(new CustomEvent('themechange', { detail: currentTheme }));
+    }, 0);
+  }
 
   return {
     subscribe,
     set: (value: Theme) => {
       if (isBrowser()) {
         localStorage.setItem('theme', value);
+        document.documentElement.setAttribute('data-theme', value);
+        // Dispatch a custom event that components can listen for
+        window.dispatchEvent(new CustomEvent('themechange', { detail: value }));
       }
       set(value);
+    },
+    initialize: () => {
+      if (isBrowser()) {
+        const storedTheme = loadTheme();
+        document.documentElement.setAttribute('data-theme', storedTheme);
+        set(storedTheme);
+        // Dispatch a custom event that components can listen for
+        window.dispatchEvent(new CustomEvent('themechange', { detail: storedTheme }));
+      }
     }
   };
 }

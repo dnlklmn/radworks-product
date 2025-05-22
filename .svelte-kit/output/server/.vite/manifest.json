@@ -8,16 +8,9 @@
       "_internal.js"
     ]
   },
-  "_Download.js": {
-    "file": "chunks/Download.js",
-    "name": "Download",
-    "imports": [
-      "_index.js",
-      "_Icon.js"
-    ],
-    "css": [
-      "app/immutable/assets/Download.AaUgpNh4.css"
-    ]
+  "_Download.svelte_svelte_type_style_lang.js": {
+    "file": "app/immutable/assets/Download.oAlbAjdd.css",
+    "src": "_Download.svelte_svelte_type_style_lang.js"
   },
   "_Icon.js": {
     "file": "chunks/Icon.js",
@@ -28,6 +21,10 @@
     "css": [
       "app/immutable/assets/Icon.CnFNOev9.css"
     ]
+  },
+  "_Icon.svelte_svelte_type_style_lang.js": {
+    "file": "app/immutable/assets/Icon.CnFNOev9.css",
+    "src": "_Icon.svelte_svelte_type_style_lang.js"
   },
   "_client.js": {
     "file": "chunks/client.js",
@@ -92,6 +89,10 @@
     "src": "src/hooks.server.js",
     "isDynamicEntry": true
   },
+  "src/lib/content/fuzzy-filter.png": {
+    "file": "app/immutable/assets/fuzzy-filter.Dz8kiRLJ.png",
+    "src": "src/lib/content/fuzzy-filter.png"
+  },
   "src/routes/+error.svelte": {
     "file": "entries/pages/_error.svelte.js",
     "name": "entries/pages/_error.svelte",
@@ -120,11 +121,11 @@
       "_index.js",
       "_client.js",
       "_stores.js",
-      "_Icon.js",
-      "_index2.js"
+      "_index2.js",
+      "_Icon.js"
     ],
     "css": [
-      "app/immutable/assets/_layout.B1B4Q9mz.css"
+      "app/immutable/assets/_layout.Bia04dU6.css"
     ]
   },
   "src/routes/+page.svelte": {
@@ -134,10 +135,11 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_Download.js"
+      "_Icon.js"
     ],
     "css": [
-      "app/immutable/assets/_page.CgNU35Qv.css"
+      "app/immutable/assets/_page.CgNU35Qv.css",
+      "app/immutable/assets/Download.oAlbAjdd.css"
     ]
   },
   "src/routes/docs/+layout.svelte": {
@@ -150,7 +152,7 @@
       "_index2.js"
     ],
     "css": [
-      "app/immutable/assets/_layout.Szv9d3XG.css"
+      "app/immutable/assets/_layout.C7AGE9NP.css"
     ]
   },
   "src/routes/docs/+page.js": {
@@ -167,12 +169,12 @@
     "imports": [
       "_index.js",
       "_index2.js",
-      "_stores.js",
-      "_Download.js",
       "_client.js"
     ],
     "css": [
-      "app/immutable/assets/_page.BgXhGHzj.css"
+      "app/immutable/assets/_page.DLplyQyR.css",
+      "app/immutable/assets/Icon.CnFNOev9.css",
+      "app/immutable/assets/Download.oAlbAjdd.css"
     ]
   },
   "src/routes/docs/[...slug]/+page.js": {

@@ -13,15 +13,37 @@
   const isDocsPage = $derived($page.url.pathname.startsWith('/docs'));
 
   onMount(() => {
+    // Initialize theme from localStorage
+    if (typeof theme.initialize === 'function') {
+      theme.initialize();
+    }
+    
     const mainElement = document.querySelector('main');
     if (mainElement) {
       mainElement.addEventListener('scroll', () => {
         scrolled.set(mainElement.scrollTop > 40);
       });
     }
+    
+    // Add a listener for theme changes to ensure the theme is properly applied
+    const handleThemeChange = () => {
+      if ($theme) {
+        document.documentElement.setAttribute('data-theme', $theme);
+      }
+    };
+    
+    window.addEventListener('themechange', handleThemeChange);
+    
+    return () => {
+      window.removeEventListener('themechange', handleThemeChange);
+    };
   });
 
-  $effect(() => document.documentElement.setAttribute('data-theme', $theme));
+  $effect(() => {
+    if ($theme) {
+      document.documentElement.setAttribute('data-theme', $theme);
+    }
+  });
 </script>
 
 <style>

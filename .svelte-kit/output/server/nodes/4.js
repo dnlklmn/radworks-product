@@ -10,6 +10,6 @@ export const universal = {
   "trailingSlash": "never"
 };
 export const universal_id = "src/routes/docs/+page.js";
-export const imports = ["app/immutable/nodes/4.DG9SThnz.js","app/immutable/chunks/DQw1mVg5.js","app/immutable/chunks/DwvgaAyw.js","app/immutable/chunks/C1MFQA5y.js","app/immutable/chunks/CGnMSPBz.js","app/immutable/chunks/D47-vlkw.js","app/immutable/chunks/D2rZA1FA.js","app/immutable/chunks/CtMmVGll.js","app/immutable/chunks/DWBa8EYP.js","app/immutable/chunks/jgE79BOX.js","app/immutable/chunks/BdVcgzAT.js","app/immutable/chunks/BTOyZMxC.js","app/immutable/chunks/B1FlOfnP.js"];
-export const stylesheets = ["app/immutable/assets/Icon.CnFNOev9.css","app/immutable/assets/Download.CIdYbOiG.css","app/immutable/assets/_page.vd6KG1iE.css"];
+export const imports = ["app/immutable/nodes/4.DRrmXlIb.js","app/immutable/chunks/Dh8A1lET.js","app/immutable/chunks/ThhHBB1d.js","app/immutable/chunks/jq9wEVhc.js","app/immutable/chunks/j6Iib1uc.js","app/immutable/chunks/CllxaVzD.js","app/immutable/chunks/BoNxC54d.js","app/immutable/chunks/Ckxk6Aen.js","app/immutable/chunks/DTlT_YbP.js","app/immutable/chunks/DTwCd3I1.js","app/immutable/chunks/szSiFn78.js","app/immutable/chunks/DFjLfVbM.js"];
+export const stylesheets = ["app/immutable/assets/Icon.CnFNOev9.css","app/immutable/assets/Download.BY9OLPJp.css","app/immutable/assets/_page.DLplyQyR.css"];
 export const fonts = [];
