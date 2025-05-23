@@ -133,29 +133,119 @@ Collaborate on code changes with integrated review tools:
 
 ## Radicle Basics
 
+### Understanding Radicle
+
+Radicle is a peer-to-peer code collaboration platform built on Git. Unlike centralized platforms like GitHub or GitLab, there is no central server controlling your data. Your repositories exist on your device and are shared directly with collaborators.
+
 ### Radicle Identity
 
-Your Radicle identity is your passport to the network. It is a public key that is used to identify you on the network. You can create a new identity or import an existing one.
+Your Radicle identity is your passport to the network. It is a cryptographic key pair that uniquely identifies you. The public key is shared with others, while the private key is kept secure and used to sign your contributions.
+
+When you first use the desktop app, it will help you create a new identity with an alias (username) and passphrase. Each device requires its own identity, so don't try to share identities between devices.
 
 ### Radicle Node
 
-Your Radicle node is the application that runs on your computer and keeps you in sync with the network. It is a peer-to-peer application that allows you to interact with the Radicle network.
+Your Radicle node is the application that runs on your computer and keeps you in sync with the network. The node:
+
+- Stores and synchronizes repositories you're interested in
+- Communicates with other peers on the network
+- Allows you to work offline and sync changes when reconnected
+- Hosts your repositories, making them available to others
+
+The desktop app automatically manages your node for you.
+
+### Repositories in Radicle
+
+Repositories in Radicle are identified by a unique Repository ID (RID) that looks like `rad:z3gqcJUoA1n9HaHKufZs5FCSGazv5`.
+
+When you create or clone a repository in Radicle:
+- It's stored locally on your device
+- It can be shared with specific collaborators or made public
+- You can work on it offline and sync changes later
+- Your contributions are cryptographically signed
+
+### Collaboration Features
+
+Radicle provides collaboration features that work without a central server:
+
+- **Issues**: Track and manage tasks directly within the app
+- **Patches**: Similar to pull requests, these are proposed changes to repositories
+- **Code Reviews**: Comment on specific lines of code and suggest changes
+- **Seeding**: Help distribute repositories by "seeding" them, similar to BitTorrent
+
+### Network & Discovery
+
+Repositories are discoverable through:
+- Seed nodes: Public nodes that help distribute repositories
+- Direct sharing: Sharing repository IDs with collaborators
+- Following: Choosing specific repositories to replicate
+
+All communication between nodes is encrypted and authenticated.
 
 ## Frequently Asked Questions
 
+### Core Platform Questions
 
-### How is Radicle different from GitHub or GitLab?
+#### Radicle vs. GitHub/GitLab
+
+How is Radicle different from GitHub or GitLab?
 
 Radicle is fundamentally different because it's built on a peer-to-peer architecture. There is no central server or company controlling your data. Your repositories exist on your device and are shared directly with collaborators.
 
-### Do I need an internet connection to use Radicle?
+<br/>
+
+#### Offline Usage
+
+Do I need an internet connection to use Radicle?
 
 No, you can work completely offline. When you connect to the internet, you can sync with your peers to share updates.
 
-### Is Radicle Desktop open source?
+<br/>
+
+#### Open Source Status
+
+Is Radicle Desktop open source?
 
 Yes, Radicle Desktop is entirely open source. You can find the source code on the Radicle network itself or on GitHub.
 
-### How do I find other users and repositories?
+### Common Technical Issues
 
-Radicle provides discovery mechanisms through seeds (public nodes) and through direct sharing of repository IDs and node addresses.
+#### Connection Troubleshooting
+
+How do I troubleshoot connection issues with my Radicle node?
+
+If you're experiencing connection issues, try: (1) check the node status indicator, (2) restart the app, (3) ensure your firewall isn't blocking port 8776, and (4) verify your internet connection. Enable debug mode in settings for detailed logs.
+
+<br/>
+
+#### Multi-Device Identity
+
+Can I use the same Radicle identity on multiple devices?
+
+Currently, each device requires its own Radicle identity. The team is working on proper multi-device support. For now, create separate identities for each device.
+
+<br/>
+
+#### Repository Visibility
+
+Why can't others see my repository after I've pushed it?
+
+For others to see your repository: ensure your node is online, verify your repositories are being properly seeded, share your Repository ID (RID), and consider having your repository picked up by a seed node for better availability.
+
+<br/>
+
+### Platform & Usage
+
+#### Windows Support
+
+Does Radicle Desktop support Windows?
+
+Currently, Radicle Desktop supports Linux and macOS. Windows support is planned for the future based on community demand.
+
+<br/>
+
+#### GitHub Migration
+
+How do I migrate repositories from GitHub to Radicle?
+
+Clone your GitHub repository locally, initialize it as a Radicle repository using the desktop app, then push it to the network. Full migration tooling for issues and pull requests is planned.

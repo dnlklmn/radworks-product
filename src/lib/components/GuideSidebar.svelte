@@ -109,21 +109,11 @@
 <style>
   .sidebar {
     width: 280px;
-    background-color: var(--color-background-float);
     padding: 1.5rem 0;
     overflow-y: auto;
     height: 100%;
-    border-right: 1px solid var(--color-fill-separator);
   }
 
-  .sidebar-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 0 1.5rem 1rem;
-    color: var(--color-foreground-emphasized);
-    border-bottom: 1px solid var(--color-fill-separator);
-    margin-bottom: 1rem;
-  }
 
   .toc-list {
     list-style: none;
@@ -158,7 +148,7 @@
     color: var(--color-foreground-emphasized);
     background-color: var(--color-background-active);
     font-weight: 500;
-    border-left: 3px solid var(--color-fill-primary);
+    border-left: 3px solid var(--color-fill-secondary);
   }
 
   .level-1 {

@@ -104,7 +104,6 @@
 
   .guides-sidebar {
     background-color: var(--color-background-default);
-    border-right: 1px solid var(--color-fill-separator);
     height: calc(100vh - 56px); /* Full viewport height minus header */
     position: sticky;
     top: 56px; /* Header height */
