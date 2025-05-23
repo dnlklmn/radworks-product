@@ -1,0 +1,61 @@
+name: Update Desktop App FAQ
+
+on:
+  schedule:
+    # Run every Monday at 2:00 AM UTC
+    - cron: '0 2 * * 1'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  update-faq:
+    name: Update FAQ Section
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: |
+          npm install zulip-js dotenv
+          
+      - name: Create .env file
+        run: |
+          echo "ZULIP_EMAIL=${{ secrets.ZULIP_EMAIL }}" > .env
+          echo "ZULIP_API_KEY=${{ secrets.ZULIP_API_KEY }}" >> .env
+          echo "ZULIP_REALM=https://radicle.zulipchat.com" >> .env
+          
+      - name: Run FAQ update script
+        run: node scripts/update_desktop_faq.js
+        
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code src/lib/content/desktop-app-guide.md || echo "changes=true" >> $GITHUB_OUTPUT
+          
+      - name: Create Pull Request
+        if: steps.git-check.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update desktop app FAQ section"
+          title: "Weekly Desktop App FAQ Update"
+          body: |
+            This PR updates the FAQ section in the desktop app guide with the latest questions from the Zulip support channel.
+            
+            **Changes:**
+            - Updated questions and answers based on recent support conversations
+            - Last update date: $(date +%Y-%m-%d)
+            
+            This is an automated PR created by the weekly FAQ update workflow.
+          branch: update-desktop-faq
+          base: main
+          labels: documentation, automated
+          assignees: ${{ github.actor }}

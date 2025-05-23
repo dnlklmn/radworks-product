@@ -42,7 +42,7 @@
   }
   
   .cmd-vertical {
-    background: var(--color-fill-ghost);
+    background: var(--color-border-hint);
     width: 2px;
     height: calc(100% + 4px);
     min-height: 2rem;

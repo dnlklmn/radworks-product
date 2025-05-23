@@ -47,7 +47,7 @@
 
 <style>
 
-  .buttons {
+    .buttons {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
