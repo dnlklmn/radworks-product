@@ -28,6 +28,7 @@ function createThemeStore() {
     set: (value: Theme) => {
       if (isBrowser()) {
         localStorage.setItem("theme", value);
+        document.documentElement.setAttribute("data-theme", value);
       }
       set(value);
     },
